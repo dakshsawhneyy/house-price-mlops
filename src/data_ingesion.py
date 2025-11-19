@@ -1,22 +1,27 @@
 import pandas as pd
 import os
 
-RAW_DATA_PATH = "data/raw/Housing.csv"
-PROCESSED_DATA_PATH = "data/processed/data.csv"
+RAW_DATA = "data/raw/Housing.csv"
+PROCESSED_DATA = "data/processed/data.csv"
 
-def load_and_process():
-    # read raw data
-    df = pd.read_csv(RAW_DATA_PATH)
+def process_data():
+    df = pd.read_csv(RAW_DATA)
 
-    # Basic cleaning (very light)
-    df = df.dropna()   # remove missing rows
+    # Encode yes/no
+    yes_no_cols = ["mainroad", "guestroom", "basement", "hotwaterheating", "airconditioning", "prefarea"]
+    for col in yes_no_cols:
+        df[col] = df[col].map({"yes": 1, "no": 0})
 
-    # Save processed
+    # Encode furnishingstatus
+    df["furnishingstatus"] = df["furnishingstatus"].map({
+        "furnished": 2,
+        "semi-furnished": 1,
+        "unfurnished": 0
+    })
+
+    # Save processed data
     os.makedirs("data/processed", exist_ok=True)
-    df.to_csv(PROCESSED_DATA_PATH, index=False)
-
-    print(f"Processed data saved to {PROCESSED_DATA_PATH}")
-
+    df.to_csv(PROCESSED_DATA, index=False)
 
 if __name__ == "__main__":
-    load_and_process()
+    process_data()

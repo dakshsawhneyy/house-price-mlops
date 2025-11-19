@@ -22,8 +22,8 @@ def evaluate_model():
     # Predictions
     preds = model.predict(X)
 
-    # RMSE
-    rmse = mean_squared_error(y, preds, squared=False)
+    mse = mean_squared_error(y, preds)
+    rmse = mse ** 0.5
 
     # Save metrics
     os.makedirs("metrics", exist_ok=True)

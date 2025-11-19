@@ -1,46 +1,55 @@
 import pandas as pd
+import numpy as np
 import pickle
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
 import yaml
-import os
 
-DATA_PATH = "data/processed/data.csv"
-PARAMS_PATH = "params.yml"
-MODEL_PATH = "models/model.pkl"
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.pipeline import Pipeline
+from sklearn.linear_model import LinearRegression
 
+# Load params
+with open("params.yml", "r") as f:
+    params = yaml.safe_load(f)
 
 def train_model():
-    # Load parameters (optional but production-style)
-    with open(PARAMS_PATH, "r") as f:
-        params = yaml.safe_load(f)
+    df = pd.read_csv("data/processed/data.csv")
 
-    df = pd.read_csv(DATA_PATH)
+    # Target column
+    target = params["target"]             # e.g. 'price'
+    y = df[target]
+    X = df.drop(columns=[target])
 
-    X = df.drop(columns=["price"])    # features
-    y = df["price"]                   # target
+    # Identify categorical & numerical columns
+    categorical_cols = X.select_dtypes(include=["object"]).columns
+    numeric_cols = X.select_dtypes(exclude=["object"]).columns
 
-    # Split the data
-    test_size = params["train"]["test_size"]
-    random_state = params["train"]["random_state"]
-
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y,
-        test_size=test_size,
-        random_state=random_state
+    # Create preprocessing transformer
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_cols),
+            ("num", "passthrough", numeric_cols)
+        ]
     )
 
-    # Train a simple model
-    model = LinearRegression()
-    model.fit(X_train, y_train)
+    # Pipeline (preprocessing + model)
+    model_pipeline = Pipeline(steps=[
+        ("preprocess", preprocessor),
+        ("model", LinearRegression())
+    ])
+
+    # Split
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=params["split"], random_state=42
+    )
+
+    # Fit
+    model_pipeline.fit(X_train, y_train)
 
     # Save model
-    os.makedirs("models", exist_ok=True)
-    with open(MODEL_PATH, "wb") as f:
-        pickle.dump(model, f)
-
-    print(f"Model saved to {MODEL_PATH}")
-
+    with open("models/model.pkl", "wb") as f:
+        pickle.dump(model_pipeline, f)
 
 if __name__ == "__main__":
     train_model()
