@@ -1,0 +1,23 @@
+stages:
+  processing:
+    cmd: python3 data_ingesion.py
+    deps:
+      - data/raw/Housing.csv
+    outs:
+      - data/processed/data.csv
+
+  train:
+    cmd: python3 data_building.py
+    deps:
+      - data/processed/data.csv
+      - params.yml
+    outs:
+      - models/model.pkl
+
+  evaluate:
+    cmd: python3 data_evaluation.py
+    deps:
+      - models/model.pkl
+      - data/processed/data.csv
+    outs:
+      - metrics/score.json
