@@ -7,3 +7,7 @@ fastapi
 uvicorn
 mlflow
 dagshub
+fastapi
+pydantic
+gunicorn
+prometheus_fastapi_instrumentator
