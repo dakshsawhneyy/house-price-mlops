@@ -12,8 +12,6 @@ stages:
       - data/processed/data.csv
       - params.yml
       - src/data_building.py
-    outs:
-      - models/model.pkl
 
   evaluate:
     cmd: python3 src/data_evaluation.py

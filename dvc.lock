@@ -14,30 +14,6 @@ stages:
       md5: a6f7c23361c6bf7cfe9f51b9f7b12104
       size: 29435
       isexec: true
-  train:
-    cmd: python3 src/data_building.py
-    deps:
-    - path: data/processed/data.csv
-      hash: md5
-      md5: a6f7c23361c6bf7cfe9f51b9f7b12104
-      size: 29435
-      isexec: true
-    - path: params.yml
-      hash: md5
-      md5: 1503af684e347827f408ade8520cb47f
-      size: 75
-      isexec: true
-    - path: src/data_building.py
-      hash: md5
-      md5: 4c6c4a03832216528ed059a353227e9e
-      size: 2519
-      isexec: true
-    outs:
-    - path: models/model.pkl
-      hash: md5
-      md5: a293355499eaa332203cb6c46c88b1fa
-      size: 2859
-      isexec: true
   evaluate:
     cmd: python3 src/data_evaluation.py
     deps:
@@ -56,4 +32,22 @@ stages:
       hash: md5
       md5: 1ddc57d54892bd577a25b320a07610ca
       size: 34
+      isexec: true
+  train:
+    cmd: python3 src/data_building.py
+    deps:
+    - path: data/processed/data.csv
+      hash: md5
+      md5: a6f7c23361c6bf7cfe9f51b9f7b12104
+      size: 29435
+      isexec: true
+    - path: params.yml
+      hash: md5
+      md5: 1503af684e347827f408ade8520cb47f
+      size: 75
+      isexec: true
+    - path: src/data_building.py
+      hash: md5
+      md5: 4c6c4a03832216528ed059a353227e9e
+      size: 2519
       isexec: true
