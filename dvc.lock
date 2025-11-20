@@ -24,8 +24,13 @@ stages:
       isexec: true
     - path: params.yml
       hash: md5
-      md5: ceba57caea9b824060593a27779ea3b0
-      size: 57
+      md5: 1503af684e347827f408ade8520cb47f
+      size: 75
+      isexec: true
+    - path: src/data_building.py
+      hash: md5
+      md5: 4c6c4a03832216528ed059a353227e9e
+      size: 2519
       isexec: true
     outs:
     - path: models/model.pkl

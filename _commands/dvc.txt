@@ -9,3 +9,12 @@ dvc stage add -n train \
     -d data/processed/data.csv \
     -o models/model.pkl \
     python src/data_building.py
+
+
+dvc remote modify origin --local auth basic
+dvc remote modify origin --local user <your-username>
+dvc remote modify origin --local password <your-token>
+
+dvc remote list
+dvc remote default origin
+

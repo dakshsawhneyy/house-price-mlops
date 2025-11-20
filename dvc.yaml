@@ -11,6 +11,7 @@ stages:
     deps:
       - data/processed/data.csv
       - params.yml
+      - src/data_building.py
     outs:
       - models/model.pkl
 
