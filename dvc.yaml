@@ -20,3 +20,13 @@ stages:
       - data/processed/data.csv
     outs:
       - metrics/score.json
+
+  drift_check:
+    cmd: python3 src/drift_check.py
+    deps:
+      - data/processed/data.csv
+      - data/current_batch.csv
+      - src/drift_check.py
+    outs:
+      - metrics/drift_report.json
+      - metrics/drift_report.html
