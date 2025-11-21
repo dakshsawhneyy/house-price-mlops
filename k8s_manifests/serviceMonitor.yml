@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: house-price-serving-servicemonitor
+  labels:
+    app: house-price-serving
+    release: monitor
+spec:
+  selector:
+    matchLabels:
+      app: house-price-serving     # MUST match labels in your Service
+  namespaceSelector:
+    matchNames:
+      - default             # your service is in default namespace
+  endpoints:
+    - port: http            # MUST match service.port.name
+      path: /metrics
+      interval: 10s
+      scrapeTimeout: 5s

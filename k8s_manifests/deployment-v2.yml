@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: house-price-serving-deployment-v2
+  labels:
+    app: house-price-serving
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: house-price-serving
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: house-price-serving
+        version: v2
+    spec:
+      containers:
+      - name: house-price-serving
+        image: dakshsawhneyy/house-price-serving:latest
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: "100m"  
+            memory: "128Mi" 
+          limits:
+            cpu: "200m"  
+            memory: "256Mi" 
