@@ -11,3 +11,4 @@ fastapi
 pydantic
 gunicorn
 prometheus_fastapi_instrumentator
+evidently
