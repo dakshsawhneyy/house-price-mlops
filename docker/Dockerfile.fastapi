@@ -11,6 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/serving/app.py .
 COPY models/model.pkl models/model.pkl
+COPY .env .env
 
 FROM python:3.10-slim
 
@@ -22,6 +23,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY --from=builder $VIRTUAL_ENV $VIRTUAL_ENV
 COPY --from=builder /app/app.py .
 COPY --from=builder /app/models ./models
+COPY --from=builder /app/.env .env
 
 EXPOSE 8000
 
