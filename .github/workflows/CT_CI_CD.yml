@@ -50,6 +50,22 @@ jobs:
           name: model-artifact
           path: models/model.pkl
 
+  Drift-Detection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      - name: Run Drift Detection
+        run: |
+          python3 src/drift_check.py
+
   Continuous-Integration:
     runs-on: ubuntu-latest
     steps:
