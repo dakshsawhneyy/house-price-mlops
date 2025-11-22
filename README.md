@@ -1,4 +1,4 @@
-# **House Price Prediction — End-to-End Production-Grade MLOps Pipeline**
+# **A Production-Grade MLOps Pipeline — [ CT | CI | CD | Drift Detection | Canary ]**
 
 ## **Why This Project? (The Problem)**
 
