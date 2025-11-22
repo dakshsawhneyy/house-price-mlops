@@ -1,10 +1,3 @@
-<img width="1476" height="885" alt="diagram-export-21-11-2025-11_13_38-pm" src="https://github.com/user-attachments/assets/95e99cf6-7bc7-407f-bc59-e64e6eaa8e0a" />
-
-Here is a **crisp, professional, high-impact README** exactly the way recruiters, SRE/MLOps engineers, and founders prefer.
-No unnecessary info — only what *matters*.
-
----
-
 # **House Price Prediction — End-to-End Production-Grade MLOps Pipeline**
 
 ## **Why This Project? (The Problem)**
