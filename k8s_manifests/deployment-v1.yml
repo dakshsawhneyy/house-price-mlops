@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: house-price-serving
-        image: dakshsawhneyy/house-price-serving:20ce161f8d4314a515f2a2ca49c580bb127f6c5a
+        image: dakshsawhneyy/house-price-serving:93084a57e4583bf18ea01462255d909950e73147
         ports:
         - containerPort: 8000
         resources:
