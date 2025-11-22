@@ -69,7 +69,6 @@ This is a **DevOps → MLOps upgrade project**, built with the tools an actual p
 * Two deployments running simultaneously
 * Traffic split controlled via Kubernetes selector rules
 * Foundation for progressive rollouts & A/B testing
-<img width="1887" height="987" alt="429179c7-81bb-4001-bf86-c6c8b6c884c0" src="https://github.com/user-attachments/assets/8b8dcd2d-d58a-4bb4-abb5-bd2ae909db15" />
 
 ### **7. Observability**
 
