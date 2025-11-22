@@ -76,7 +76,7 @@ This is a **DevOps → MLOps upgrade project**, built with the tools an actual p
 * **Prometheus**: request count, latency, CPU, memory
 * **Grafana**: custom dashboards for model SLIs
 * Model-level metrics exposed via FastAPI instrumentator
-<img width="1880" height="1030" alt="38964e63-9e6c-40a8-8f3b-2737d07f2540" src="https://github.com/user-attachments/assets/59d71c3c-7f83-48f3-835e-7a2e3eac262a" />
+<img width="1880" height="1030" alt="38964e63-9e6c-40a8-8f3b-2737d07f2540" src="https://github.com/user-attachments/assets/7df722db-08f8-40bb-81d9-e3b4df15a462" />
 
 ---
 
